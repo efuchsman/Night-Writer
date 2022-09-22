@@ -9,4 +9,11 @@ RSpec.describe NightWriter do
 
   end
 
+  it "can has readable attributes" do
+    night_writer = NightWriter.new('./text/message.txt')
+
+    expect(night_writer.filename).to eq('./text/message.txt').or(eq('./text/braille'))
+
+  end
+
 end
