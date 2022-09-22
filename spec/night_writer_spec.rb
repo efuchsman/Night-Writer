@@ -1,10 +1,11 @@
 require 'rspec'
-require 'txt'
 require './lib/night_writer.rb'
 
 RSpec.describe NightWriter do
   it 'exists' do
+    night_writer = NightWriter.new('./text/message.txt')
 
+    expect(night_writer).to be_an_instance_of(NightWriter)
 
   end
 
