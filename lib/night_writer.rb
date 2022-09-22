@@ -8,7 +8,7 @@ class NightWriter
   end
 
   def read_message
-    file = File.readlines('./text/' + @filename, chomp: true, headers: true, header_converters: :symbol)
+    file = File.readlines(@filename, chomp: true, headers: true, header_converters: :symbol)
      p file.join("','")[/\A"(.*)"\z/m,1]
   end
 
