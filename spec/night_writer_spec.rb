@@ -16,4 +16,12 @@ RSpec.describe NightWriter do
 
   end
 
+  it "can take in readable input from a file" do
+
+    night_writer = NightWriter.new('./text/message.txt')
+
+    expect(night_writer.read_message).to eq("there's vomit on his sweater already mom's spaghetti"
+    )
+  end
+
 end
