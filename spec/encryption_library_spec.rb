@@ -78,7 +78,7 @@ RSpec.describe EncryptionLibrary do
     )
   end
 
-  it 'can return reverse the output based on braille input' do
+  it 'can reverse the output based on braille input for the alphabet' do
     encryption_library = EncryptionLibrary.new
 
     expect(encryption_library.braille_to_alphabet).to eq(
@@ -113,4 +113,19 @@ RSpec.describe EncryptionLibrary do
                                     )
   end
 
+  it 'can reverse common punctuation marks from a braille input' do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.braille_to_punctuation).to eq(
+      {
+        ['..', '..', '..'] => ' ',
+        ['..', '00', '.0'] => '.',
+        ['..', '0.', '00'] => '?',
+        ['..', '00', '0.'] => '!',
+        ['..', '..', '0.'] => "'",
+        ['..', '0.', '..'] => ',',
+        ['..', '..', '00'] => '-',
+      }
+    )
+  end
 end

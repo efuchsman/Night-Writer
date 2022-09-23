@@ -1,6 +1,6 @@
 class EncryptionLibrary
 
-  attr_reader :the_braille_alphabet, :common_punctuation_marks, :the_braille_numbers, :braille_to_alphabet
+  attr_reader :the_braille_alphabet, :common_punctuation_marks, :the_braille_numbers, :braille_to_alphabet, :braille_to_punctuation
 
   def initialize
     @the_braille_alphabet =
@@ -58,6 +58,7 @@ class EncryptionLibrary
     }
 
     @braille_to_alphabet = @the_braille_alphabet.invert
+    @braille_to_punctuation = @common_punctuation_marks.invert
   end
 
 
