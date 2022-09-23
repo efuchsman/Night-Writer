@@ -38,44 +38,10 @@ RSpec.describe EncryptionLibrary do
         'w' => ['.0', '00', '.0'],
         'x' => ['00', '..', '00'],
         'y' => ['00', '.0', '00'],
-        'z' => ['0.', '.0', '00']
+        'z' => ['0.', '.0', '00'],
+        ' ' => ['..', '..', '..']
                                   }
                                     )
-  end
-
-  it 'can return common punctuation marks' do
-    encryption_library = EncryptionLibrary.new
-
-    expect(encryption_library.common_punctuation_marks).to eq(
-      {
-        ' ' => ['..', '..', '..'],
-        '.' => ['..', '00', '.0'],
-        '?' => ['..', '0.', '00'],
-        '!' => ['..', '00', '0.'],
-        "'" => ['..', '..', '0.'],
-        ',' => ['..', '0.', '..'],
-        '-' => ['..', '..', '00'],
-      }
-    )
-  end
-
-  it 'can return braille numbers' do
-    encryption_library = EncryptionLibrary.new
-
-    expect(encryption_library.the_braille_numbers).to eq(
-      {
-        '0' => ['.0', '00', '..'],
-        '1' => ['0.', '..', '..'],
-        '2' => ['0.', '0.', '..'],
-        '3' => ['00', '..', '..'],
-        '4' => ['00', '.0', '..'],
-        '5' => ['0.', '.0', '..'],
-        '6' => ['00', '0.', '..'],
-        '7' => ['00', '00', '..'],
-        '8' => ['0.', '00', '..'],
-        '9' => ['.0', '0.', '..'],
-      }
-    )
   end
 
   it 'can reverse the output based on braille input for the alphabet' do
@@ -108,42 +74,10 @@ RSpec.describe EncryptionLibrary do
         ['.0', '00', '.0'] => 'w',
         ['00', '..', '00'] => 'x',
         ['00', '.0', '00'] => 'y',
-        ['0.', '.0', '00'] => 'z'
+        ['0.', '.0', '00'] => 'z',
+        ['..', '..', '..'] => ' '
                                   }
                                     )
-  end
-
-  it 'can reverse common punctuation marks from a braille input' do
-    encryption_library = EncryptionLibrary.new
-
-    expect(encryption_library.braille_to_punctuation).to eq(
-      {
-        ['..', '..', '..'] => ' ',
-        ['..', '00', '.0'] => '.',
-        ['..', '0.', '00'] => '?',
-        ['..', '00', '0.'] => '!',
-        ['..', '..', '0.'] => "'",
-        ['..', '0.', '..'] => ',',
-        ['..', '..', '00'] => '-',
-      }
-    )
-  end
-
-  it 'can reverse braille to numbers' do
-    encryption_library = EncryptionLibrary.new
-
-    expect(encryption_library.braille_to_numbers).to eq(
-      ['.0', '00', '..'] => '0',
-      ['0.', '..', '..'] => '1',
-      ['0.', '0.', '..'] => '2',
-      ['00', '..', '..'] => '3',
-      ['00', '.0', '..'] => '4',
-      ['0.', '.0', '..'] => '5',
-      ['00', '0.', '..'] => '6',
-      ['00', '00', '..'] => '7',
-      ['0.', '00', '..'] => '8',
-      ['.0', '0.', '..'] => '9',
-    )
   end
 
   it "can take an a word argument and convert it braille" do

@@ -1,11 +1,8 @@
 class EncryptionLibrary
 
   attr_reader :the_braille_alphabet,
-              :common_punctuation_marks,
-              :the_braille_numbers,
-              :braille_to_alphabet,
-              :braille_to_punctuation,
-              :braille_to_numbers
+              :braille_to_alphabet
+
 
   def initialize
     @the_braille_alphabet =
@@ -35,49 +32,24 @@ class EncryptionLibrary
       'w' => ['.0', '00', '.0'],
       'x' => ['00', '..', '00'],
       'y' => ['00', '.0', '00'],
-      'z' => ['0.', '.0', '00']
-                                }
-    @common_punctuation_marks =
-    {
-      ' ' => ['..', '..', '..'],
-      '.' => ['..', '00', '.0'],
-      '?' => ['..', '0.', '00'],
-      '!' => ['..', '00', '0.'],
-      "'" => ['..', '..', '0.'],
-      ',' => ['..', '0.', '..'],
-      '-' => ['..', '..', '00'],
-    }
-
-    @the_braille_numbers =
-    {
-      '0' => ['.0', '00', '..'],
-      '1' => ['0.', '..', '..'],
-      '2' => ['0.', '0.', '..'],
-      '3' => ['00', '..', '..'],
-      '4' => ['00', '.0', '..'],
-      '5' => ['0.', '.0', '..'],
-      '6' => ['00', '0.', '..'],
-      '7' => ['00', '00', '..'],
-      '8' => ['0.', '00', '..'],
-      '9' => ['.0', '0.', '..'],
+      'z' => ['0.', '.0', '00'],
+      ' ' => ['..', '..', '..']
     }
 
     @braille_to_alphabet = @the_braille_alphabet.invert
-    @braille_to_punctuation = @common_punctuation_marks.invert
-    @braille_to_numbers = @the_braille_numbers.invert
   end
 
   def word_translation(word)
     word_array = word.downcase.chars
     braille_array = []
     word_array.each do |letter|
-      @the_braille_alphabet.each_pair do |hash_letter, hash_braille|
+      @the_braille_alphabet.each_pair do |hash_letter, hash_letter_braille|
         if letter == hash_letter
-          braille_array << hash_braille
+          braille_array << hash_letter_braille
         end
       end
     end
-    p braille_array
+    braille_array
   end
 
 end
