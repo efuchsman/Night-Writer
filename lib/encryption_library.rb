@@ -1,6 +1,11 @@
 class EncryptionLibrary
 
-  attr_reader :the_braille_alphabet, :common_punctuation_marks, :the_braille_numbers, :braille_to_alphabet, :braille_to_punctuation
+  attr_reader :the_braille_alphabet,
+              :common_punctuation_marks,
+              :the_braille_numbers,
+              :braille_to_alphabet,
+              :braille_to_punctuation,
+              :braille_to_numbers
 
   def initialize
     @the_braille_alphabet =
@@ -59,8 +64,20 @@ class EncryptionLibrary
 
     @braille_to_alphabet = @the_braille_alphabet.invert
     @braille_to_punctuation = @common_punctuation_marks.invert
+    @braille_to_numbers = @the_braille_numbers.invert
   end
 
-
+  def word_translation(word)
+    word_array = word.downcase.chars
+    braille_array = []
+    word_array.each do |letter|
+      @the_braille_alphabet.each_pair do |hash_letter, hash_braille|
+        if letter == hash_letter
+          braille_array << hash_braille
+        end
+      end
+    end
+    p braille_array
+  end
 
 end
