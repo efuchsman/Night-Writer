@@ -49,7 +49,7 @@ class EncryptionLibrary
         end
       end
     end
-    braille_array
+    braille_array.flatten.join
   end
 
   def braille_translation(braille)

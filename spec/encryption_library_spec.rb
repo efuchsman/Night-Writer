@@ -83,32 +83,8 @@ RSpec.describe EncryptionLibrary do
   it "can take an a word argument and convert it braille" do
     encryption_library = EncryptionLibrary.new
 
-    expect(encryption_library.word_translation("hello")).to eq(
-      [
-        ['0.', '00', '..'],
-        ['0.', '.0', '..'],
-        ['0.', '0.', '0.'],
-        ['0.', '0.', '0.'],
-        ['0.', '.0', '0.']
-      ]
-    )
-
-
-  expect(encryption_library.word_translation("hello world")).to eq(
-    [
-      ['0.', '00', '..'],
-      ['0.', '.0', '..'],
-      ['0.', '0.', '0.'],
-      ['0.', '0.', '0.'],
-      ['0.', '.0', '0.'],
-      ['..', '..', '..'],
-      ['.0', '00', '.0'],
-      ['0.', '.0', '0.'],
-      ['0.', '00', '0.'],
-      ['0.', '0.', '0.'],
-      ['00', '.0', '..']
-    ]
-  )
+    expect(encryption_library.word_translation("hello")).to eq("0.00..0..0..0.0.0.0.0.0.0..00.")
+    expect(encryption_library.word_translation("hello world")).to eq("0.00..0..0..0.0.0.0.0.0.0..00........000.00..00.0.000.0.0.0.00.0..")
   end
   it'can take braille and convert it to a word' do
     encryption_library = EncryptionLibrary.new
