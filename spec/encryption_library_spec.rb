@@ -110,4 +110,9 @@ RSpec.describe EncryptionLibrary do
     ]
   )
   end
+  it'can take braille and convert it to a word' do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.braille_translation("0.00..0..0..0.0.0.0.0.0.0..00.")).to eq("hello")
+  end
 end
