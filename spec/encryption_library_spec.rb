@@ -8,7 +8,7 @@ RSpec.describe EncryptionLibrary do
     expect(encryption_library).to be_an_instance_of(EncryptionLibrary)
   end
 
-  it "has a hash of the braille alphabet" do
+  it "can return the braille alphabet" do
     encryption_library = EncryptionLibrary.new
 
     expect(encryption_library.the_braille_alphabet).to eq(
@@ -41,5 +41,23 @@ RSpec.describe EncryptionLibrary do
         'z' => ['0.', '.0', '00']
                                   }
                                     )
+  end
+
+  it 'can return common punctuation marks' do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.common_punctuation_marks).to eq(
+      {
+        ' ' => ['..', '..', '..'],
+        '.' => ['..', '00', '.0'],
+        '?' => ['..', '0.', '00'],
+        '!' => ['..', '00', '0.'],
+        "'" => ['..', '..', '0.'],
+        ',' => ['..', '0.', '..'],
+        '-' => ['..', '..', '00'],
+        letter_shift: ['..', '..', '.0']
+      }
+    )
+
   end
 end
