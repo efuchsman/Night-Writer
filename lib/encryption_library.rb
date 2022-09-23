@@ -49,7 +49,24 @@ class EncryptionLibrary
         end
       end
     end
-    braille_array
+    braille_array.flatten.join
+  end
+
+  def braille_translation(braille)
+    word_array = []
+    braille_ea_char_array = braille.chars
+    braille_every_2_array = braille_ea_char_array.each_slice(2).to_a
+    join_em_array = braille_every_2_array.each_slice(1).map(&:join)
+    join_em_again_array = join_em_array.each_slice(3).to_a
+    join_em_again_array.each do |letter|
+      @braille_to_alphabet.each_pair do |hash_letter_braille, hash_letter|
+        if letter == hash_letter_braille
+          word_array << hash_letter
+        end
+      end
+    end
+    word = word_array.join
+    p word
   end
 
 end
