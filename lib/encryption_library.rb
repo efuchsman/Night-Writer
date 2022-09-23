@@ -1,6 +1,6 @@
 class EncryptionLibrary
 
-  attr_reader :the_braille_alphabet, :common_punctuation_marks, :the_braille_numbers
+  attr_reader :the_braille_alphabet, :common_punctuation_marks, :the_braille_numbers, :braille_to_alphabet
 
   def initialize
     @the_braille_alphabet =
@@ -41,7 +41,6 @@ class EncryptionLibrary
       "'" => ['..', '..', '0.'],
       ',' => ['..', '0.', '..'],
       '-' => ['..', '..', '00'],
-      letter_shift: ['..', '..', '.0']
     }
 
     @the_braille_numbers =
@@ -56,8 +55,11 @@ class EncryptionLibrary
       '7' => ['00', '00', '..'],
       '8' => ['0.', '00', '..'],
       '9' => ['.0', '0.', '..'],
-      number_shift: ['.0', '.0', '00']
     }
+
+    @braille_to_alphabet = @the_braille_alphabet.invert
   end
+
+
 
 end
