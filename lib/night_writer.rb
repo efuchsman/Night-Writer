@@ -1,9 +1,11 @@
+require "./lib/encryption_library"
 
+encryption_library = EncryptionLibrary.new
 message = File.open(ARGV[0], "r")
 message_reader = message.read
+translator = encryption_library.translate_input(message_reader)
 
 new_file = File.open(ARGV[1], "w")
+new_file.write(translator)
 
-encrypter = new_file.write(message_reader)
-
-puts "Created #{ARGV[1]} containing #{message_reader.length} characters"
+puts "Created #{ARGV[1]} containing #{translator.length} characters"

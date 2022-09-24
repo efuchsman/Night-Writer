@@ -83,12 +83,21 @@ RSpec.describe EncryptionLibrary do
   it "can take an a word argument and convert it braille" do
     encryption_library = EncryptionLibrary.new
 
-    expect(encryption_library.word_translation("hello")).to eq("0.00..0..0..0.0.0.0.0.0.0..00.")
-    expect(encryption_library.word_translation("hello world")).to eq("0.00..0..0..0.0.0.0.0.0.0..00........000.00..00.0.000.0.0.0.00.0..")
+    expect(encryption_library.word_translation("hello")).to eq(
+      "0.0.0.0.0.\n00.00.0..0\n....0.0.0."
+    )
+
   end
   it'can take braille and convert it to a word' do
     encryption_library = EncryptionLibrary.new
 
-    expect(encryption_library.braille_translation("0.00..0..0..0.0.0.0.0.0.0..00.")).to eq("hello")
+    expect(encryption_library.braille_translation("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
+  end
+
+  it "can determine which translator to use based off of input" do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.translate_input("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
+    expect(encryption_library.translate_input("hello")).to eq("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")
   end
 end
