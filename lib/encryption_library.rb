@@ -50,7 +50,7 @@ class EncryptionLibrary
       end
     end
     transposed = braille_array.transpose
-    p transposed
+    transposed
   end
 
   # def braille_translation(braille)
