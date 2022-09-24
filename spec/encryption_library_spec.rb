@@ -84,10 +84,7 @@ RSpec.describe EncryptionLibrary do
     encryption_library = EncryptionLibrary.new
 
     expect(encryption_library.word_translation("hello")).to eq(
-      [["0.", "0.", "0.", "0.", "0."],
-      ["00", ".0", "0.", "0.", ".0"],
-      ["..", "..", "0.", "0.", "0."]]
-
+      "0.0.0.0.0.\n00.00.0..0\n....0.0.0."
     )
 
 

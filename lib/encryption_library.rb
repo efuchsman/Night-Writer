@@ -40,17 +40,14 @@ class EncryptionLibrary
   end
 
   def word_translation(word)
-    word_array = word.downcase.chars
+    word_array = word.gsub("\n", "").downcase.chars
     braille_array = []
     word_array.each do |letter|
-      @the_braille_alphabet.each_pair do |hash_letter, hash_letter_braille|
-        if letter == hash_letter
-          braille_array << hash_letter_braille
-        end
-      end
+      braille_array << @the_braille_alphabet[letter]
     end
     transposed = braille_array.transpose
-    transposed
+    transposed.map{ |subarray| subarray << "\n"}
+    transposed.join.chomp
   end
 
   # def braille_translation(braille)
