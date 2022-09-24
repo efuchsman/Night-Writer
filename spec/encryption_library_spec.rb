@@ -100,4 +100,10 @@ RSpec.describe EncryptionLibrary do
     expect(encryption_library.translate_input("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
     expect(encryption_library.translate_input("hello")).to eq("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")
   end
+
+  it 'can start a new line at 80 characters' do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.translate_input("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")).to eq("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................\n0.\n..\n..")
+  end
 end

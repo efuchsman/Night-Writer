@@ -51,7 +51,8 @@ class EncryptionLibrary
     end
     transposed = braille_array.transpose
     transposed.map{ |subarray| subarray << "\n"}
-    transposed.join.chomp
+    output = transposed.join.chomp
+    p output
   end
 
   def braille_translation(braille)
@@ -63,6 +64,10 @@ class EncryptionLibrary
       english_word += @braille_to_alphabet[grouping]
     end
     english_word
+  end
+
+  def formatter(output)
+
   end
 
 end
