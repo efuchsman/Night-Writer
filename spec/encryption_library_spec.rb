@@ -94,11 +94,11 @@ RSpec.describe EncryptionLibrary do
 
     # expect(encryption_library.word_translation("hello world")).to eq("0.00..0..0..0.0.0.0.0.0.0..00........000.00..00.0.000.0.0.0.00.0..")
   end
-  # it'can take braille and convert it to a word' do
-  #   encryption_library = EncryptionLibrary.new
+  it'can take braille and convert it to a word' do
+    encryption_library = EncryptionLibrary.new
 
-  #   expect(encryption_library.braille_translation("0.00..0..0..0.0.0.0.0.0.0..00.")).to eq("hello")
-  # end
+    expect(encryption_library.braille_translation("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
+  end
 
   # it "can add a new line if the output is greater than 80 characters" do
   #   encryption_library = EncryptionLibrary.new
