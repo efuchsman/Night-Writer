@@ -39,7 +39,7 @@ class EncryptionLibrary
     @braille_to_alphabet = @the_braille_alphabet.invert
   end
 
-  def translate_input(string)\
+  def translate_input(string)
     string.include?("0") ? braille_translation(string) : word_translation(string)
   end
 
@@ -50,9 +50,19 @@ class EncryptionLibrary
       braille_array << @the_braille_alphabet[letter]
     end
     transposed = braille_array.transpose
-    transposed.map{ |subarray| subarray << "\n"}
-    output = transposed.join.chomp
-    p output
+    transposed.map do |subarray|
+      if subarray.length > 40
+        separated_array = subarray.each_slice(40).to_a
+        transposed.insert(-1, separated_array.delete_at(-1))
+        subarray.slice!(0, subarray.length - 40)
+        subarray << "\n"
+      else
+        subarray << "\n"
+      end
+
+     end
+     transposed.join.chomp
+
   end
 
   def braille_translation(braille)
@@ -66,8 +76,8 @@ class EncryptionLibrary
     english_word
   end
 
-  def formatter(output)
+  # def formatter(output)
 
-  end
+  # end
 
 end

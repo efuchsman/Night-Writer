@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/encryption_library'
+require 'pry-nav'
 
 RSpec.describe EncryptionLibrary do
   it "exists" do
