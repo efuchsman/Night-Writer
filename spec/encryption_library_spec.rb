@@ -1,5 +1,6 @@
 require 'rspec'
 require './lib/encryption_library'
+require 'pry-nav'
 
 RSpec.describe EncryptionLibrary do
   it "exists" do
@@ -83,7 +84,7 @@ RSpec.describe EncryptionLibrary do
   it "can take an a word argument and convert it braille" do
     encryption_library = EncryptionLibrary.new
 
-    expect(encryption_library.word_translation("hello")).to eq(
+    expect(encryption_library.translate_to_braille("hello")).to eq(
       "0.0.0.0.0.\n00.00.0..0\n....0.0.0."
     )
 
@@ -91,7 +92,7 @@ RSpec.describe EncryptionLibrary do
   it'can take braille and convert it to a word' do
     encryption_library = EncryptionLibrary.new
 
-    expect(encryption_library.braille_translation("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
+    expect(encryption_library.translate_to_en("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
   end
 
   it "can determine which translator to use based off of input" do
@@ -99,5 +100,17 @@ RSpec.describe EncryptionLibrary do
 
     expect(encryption_library.translate_input("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")).to eq("hello")
     expect(encryption_library.translate_input("hello")).to eq("0.0.0.0.0.\n00.00.0..0\n....0.0.0.")
+  end
+
+  it 'can start a new line at 80 characters' do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.translate_input("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")).to eq("0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.\n................................................................................\n................................................................................\n0.\n..\n..")
+  end
+
+  it "can convert over 80 braille characters to word" do
+    encryption_library = EncryptionLibrary.new
+
+    expect(encryption_library.translate_input("0.0.0.0.0...0.0..00000...00.0..0.0..0.00...00.0..0..0.0.0...000.0...0.00...00...\n00.00.0..0..00.000.0.0..0000..000.....0...0000..00....00.0...0.0......0...00.0..\n....0.0.0.....0..0..00...0....0.0...000....0....0.....0.....000.00..000...0.0...\n0..0000..0..000..0\n000.000000...0.000\n0.......0...0.0..0")).to eq("hello howdy whats up what are you up to right now")
   end
 end
