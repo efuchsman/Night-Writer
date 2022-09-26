@@ -1,10 +1,11 @@
 require './lib/alphabetable'
 
 class EncryptionLibrary
-include Alphabetable
+
+  include Alphabetable
+
   attr_reader :the_braille_alphabet,
               :braille_to_alphabet
-
 
   def translate_input(string)
     string.include?("0") ? translate_to_en(string) : translate_to_braille(string)
