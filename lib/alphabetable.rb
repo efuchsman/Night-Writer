@@ -37,4 +37,8 @@ module Alphabetable
 
     @braille_to_alphabet = @the_braille_alphabet.invert
   end
+
+  def translate_input(string)
+    string.include?("0") ? translate_to_en(string) : translate_to_braille(string)
+  end
 end
