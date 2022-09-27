@@ -4,9 +4,6 @@ class EncryptionLibrary
 
   include Alphabetable
 
-  attr_reader :the_braille_alphabet,
-              :braille_to_alphabet
-
   def translate_input(string)
     string.include?("0") ? translate_to_en(string) : translate_to_braille(string)
   end
@@ -24,7 +21,11 @@ class EncryptionLibrary
     word_array = str.gsub("\n", "").downcase.chars
     braille_array = []
     word_array.each do |letter|
+      if !@the_braille_alphabet.keys.include?(letter)
+        return "Invalid use of characters"
+      else
       braille_array << @the_braille_alphabet[letter]
+      end
     end
     transposed = braille_array.transpose
     transposed.map do |subarray|
@@ -47,11 +48,14 @@ class EncryptionLibrary
     english_string = ""
     char_array = braille.join.scan(/../)
     braille_array = char_array.each_slice(braille.join.length / 6).to_a
-
     transposed = braille_array.transpose
-    transposed.each do |grouping|
-      english_string += @braille_to_alphabet[grouping]
-    end
+      transposed.each do |grouping|
+        if !@braille_to_alphabet.keys.include?(grouping)
+          return "Invalid use of characters"
+        else
+        english_string += @braille_to_alphabet[grouping]
+        end
+      end
     english_string
   end
 end
