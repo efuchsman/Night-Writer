@@ -1,9 +1,9 @@
-require "./lib/encryption_library"
+require "./lib/eng_to_braille_converter"
 
-encryption_library = EncryptionLibrary.new
+eng_to_braille = EngtoBrailleConverter.new
 message = File.open(ARGV[0], "r")
 message_reader = message.read
-translator = encryption_library.translate_input(message_reader)
+translator = eng_to_braille.translate_to_braille(message_reader)
 
 new_file = File.open(ARGV[1], "w")
 new_file.write(translator)
