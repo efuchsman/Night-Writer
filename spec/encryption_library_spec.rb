@@ -118,6 +118,8 @@ RSpec.describe EncryptionLibrary do
   it "does want to deal with invalid characters right now" do
     encryption_library = EncryptionLibrary.new
     expect(encryption_library.translate_input("09i20j0ij**jd")).to eq("Invalid use of characters")
+
+    expect(encryption_library.translate_input("0.2.0.0.0.\n00.50.0..0\n....0.0.0.")).to eq("Invalid use of characters")
   end
 
 end
