@@ -1,5 +1,8 @@
 module Alphabetable
 
+  attr_reader :the_braille_alphabet,
+              :braille_to_alphabet
+
   def initialize
     @the_braille_alphabet =
     {
