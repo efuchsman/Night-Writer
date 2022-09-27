@@ -29,6 +29,4 @@ class EngtoBrailleConverter
     end
     transposed.join
   end
-
-
 end

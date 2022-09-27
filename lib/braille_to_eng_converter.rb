@@ -4,7 +4,7 @@ class BrailletoEngConverter
 
   include Alphabetable
 
-  def translate_to_en(braille)
+  def translate_to_eng(braille)
     english_string = ""
     braille_arr = braille.split("\n")
     grouped_arr = braille_arr.each_slice(3).to_a
